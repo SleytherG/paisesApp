@@ -1,3 +1,4 @@
+<div class="animate__animated animate__fadeIn">
 <h2>Por País</h2>
 <hr>
 
@@ -10,12 +11,22 @@
   ></app-pais-input>
   </div>
 </div>
-
+</div>
+<!--AUTOCOMPLETE-->
+<ul class="list-group">
+  <li *ngFor="let pais of paisesSugeridos" class="list-group-item list-group-item-action">
+    <a class="nav-link" [routerLink]="['/pais', pais.cca2]">{{ pais.name.common }}</a>
+  </li>
+  <li *ngIf="mostrarSugerencias" class="list-group-item list-group-item-action">
+    <a class="nav-link" (click)="buscarSugerido(termino)" >Buscar: <span *ngIf="termino">"{{ termino }}"</span> </a>
+  </li>
+</ul>
+<!--FIN AUTOCOMPLETE-->
 <hr>
 <div *ngIf="hayError" class="alert alert-danger">
   No se encontró nada con el término {{ termino }}
 </div>
-<div *ngIf="!hayError && paises.length > 0" class="row">
+<div *ngIf="!hayError && paises.length > 0" class="row animate__animated animate__bounce">
   <div class="col">
     <app-pais-tabla
       [paises]="paises">
