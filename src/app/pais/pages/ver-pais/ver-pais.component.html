@@ -1,0 +1,54 @@
+<div *ngIf="!pais; else divPais" class="alert alert-info">
+  Espere por favor...
+</div>
+
+<ng-template #divPais>
+  <div *ngFor="let item of pais">
+  <div class="row" >
+    <div  class="col-12">
+      <h1>País: <small>{{ item.name.common }}</small></h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <h3>Bandera</h3>
+      <img [src]="item.flags.png" [alt]="item.name.common" class="img-thumbnail">
+    </div>
+
+    <div class="col">
+      <h3>Información</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Población: {{ item.population | number }}</strong>
+        </li>
+        <li class="list-group-item">
+          <strong>Código numérico: {{ item.ccn3 | json  }}</strong>
+        </li>
+        <li class="list-group-item">
+          <strong>Alpha: {{ item.cca2  }}</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+    <h3>Traducciones</h3>
+    <div class="row">
+      <div class="col">
+        <span class="badge bg-primary mr-1">{{ item.translations['ara'].official}}</span>
+        <span class="badge bg-primary mr-1">{{ item.translations['ces'].official}}</span>
+        <span class="badge bg-primary mr-1">{{ item.translations['cym'].official}}</span>
+        <span class="badge bg-primary mr-1">{{ item.translations['deu'].official}}</span>
+        <span class="badge bg-primary mr-1">{{ item.translations['est'].official}}</span>
+        <span class="badge bg-primary mr-1">{{ item.translations['fin'].official}}</span>
+        <span class="badge bg-primary mr-1">{{ item.translations['fra'].official}}</span>
+        <span class="badge bg-primary mr-1">{{ item.translations['hrv'].official}}</span>
+        <span class="badge bg-primary mr-1">{{ item.translations['hun'].official}}</span>
+        <span class="badge bg-primary mr-1">{{ item.translations['jpn'].official}}</span>
+      </div>
+    </div>
+<!--    <pre class="mt-5">-->
+<!--        {{ pais | json }}-->
+<!--    </pre>-->
+  </div>
+</ng-template>
+
